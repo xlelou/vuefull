@@ -15,6 +15,7 @@
 <script>
 import Feedback from './Feedback.vue'
 import RevFeedback from './RevFeedback.vue'
+import { mapGetters } from 'vuex'
 export default {
 	data() {
 		return {
@@ -22,19 +23,29 @@ export default {
 			allContent: [{type: 0, content: '2016年6月21日 - vuejsLearn--- v-for列表渲染 Vue.js是一个构建数据驱动的web界面的库。Vue.js 的核心是一个响应的数据绑定系统,它让数据与DOM保持同步非常简单如下列表展示'}]
 		}
 	},
+	computed: {
+    ...mapGetters([
+      'requesting',
+      'feedbackContent',
+      'error'
+  	])
+  },
 	components: {
 		Feedback,
 		RevFeedback
 	},
 	methods: {
 		send() {
-			if (this.content !== '') {
-				this.allContent.push({
-					type: 1,
-					content: this.content
-				})
-				this.content = ''
-			}
+		// 	this.$http.get('/robotfeedback').then((response) => {
+		// 		console.log('response=' + JSON.stringify(response.body))
+  //   // success callback
+  // }, (response) => {
+  //   // error callback
+  // });
+			// if (this.content !== '') {
+			// 	console.log('send')
+				this.$store.dispatch('requestFeedback')
+			// }
 		}
 	}
 }
