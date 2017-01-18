@@ -8,7 +8,7 @@ var opn = require('opn')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 
-var request = require('superagent')
+var axios = require('axios')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -17,26 +17,17 @@ var port = process.env.PORT || config.dev.port
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-app.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    //res.header("Access-Control-Allow-Origin", "http://localhost");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-    //res.header("Access-Control-Allow-Credentials",true);
-    res.header("X-Powered-By", 'RZ-SERVER');
-    res.header("Content-Type", "application/json;charset=utf-8");
-    next();
-});
 
 var apiRoutes = express.Router();
 apiRoutes.get('/robotfeedback', function (req, res) {
-  new Promise(function(resolve, reject) {
-    request.get('http://op.juhe.cn/robot/index').query({info: req.body.info, key: '47c25bc59dc87d0844e5c422ab7fc266'}).end(function(err, res) {
-      console.log(JSON.stringify(res.body))
-      res.json({
-        en: 'test'
-      })
-    })
+  var url = 'http://op.juhe.cn/robot/index';
+  axios.get(url, {
+    params: {
+      info: req.query.info,
+      key: '47c25bc59dc87d0844e5c422ab7fc266'
+    }
+  }).then(function(response) {
+    res.json(response.data)
   })
 });
 app.use('/', apiRoutes);

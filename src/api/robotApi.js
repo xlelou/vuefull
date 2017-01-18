@@ -1,16 +1,15 @@
-import request from 'superagent'
+import axios from 'axios'
 import { sessionUrl } from './urlConfig.js'
 
 export default {
  	getFeedback(data) {
- 		console.log('api')
- 		return new Promise((resolve, reject) => {
- 			console.log('api promise=' + sessionUrl)
- 			request.get('/robotfeedback').query({info: '你好'}).end((err, res) => {
- 				console.log(JSON.stringify(res.body) + '--------' + err)
- 				if (err) { reject(err) }
- 				resolve(res.body)
+ 		console.log(data + 'data-----')
+ 		return axios.get('/robotfeedback', {
+ 				params: {
+ 					info: data 				}
+ 			}).then(function(response) {
+ 				console.log(response.data)
+ 				return response.data
  			})
- 		})
- 	}
+ 		}
 }

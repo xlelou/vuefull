@@ -1,7 +1,7 @@
 <template>
 	<div class="revfeedback">
 		<div class="content-wrapper">
-			<span class="content">asdsadas</span>
+			<span class="content">{{content}}</span>
 		</div>
 		<div class="avatar">
 			<img src="static/avatar.jpg" width="40px" height="40px">
@@ -33,7 +33,7 @@ export default {
 			padding 5px
 			.content
 				float right
-				font-size 20px
+				font-size 10px
 				background lightgray
 				padding 5px
 </style>
