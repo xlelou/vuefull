@@ -4,7 +4,7 @@
 			<span class="content">{{content}}</span>
 		</div>
 		<div class="avatar">
-			<img src="static/avatar.jpg" width="40px" height="40px">
+			<img src="static/robot.jpeg" width="40px" height="40px">
 		</div>
 	</div>
 </template>
@@ -34,6 +34,6 @@ export default {
 			.content
 				float right
 				font-size 10px
-				background lightgray
+				background #96E350
 				padding 5px
 </style>

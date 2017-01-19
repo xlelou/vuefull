@@ -20,4 +20,5 @@ import Login from './components/Login.vue'
     -moz-osx-font-smoothing grayscale
     width 100%
     font-size 20px
+    background #f1f1f1
 </style>

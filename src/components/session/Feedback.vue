@@ -31,11 +31,10 @@ export default {
 			margin-right 20%
 			line-height 20px
 			.content
-				background lightgray
 				display inline-block
-				min-height 40px
 				font-size 10px
 				padding-left 5px
 				padding-right 5px
 				word-break break-all
+				background #ffffff
 </style>
